@@ -5,6 +5,7 @@ import requests
 from flask import Flask, render_template, request, jsonify
 from google import genai
 from google.genai.types import RawReferenceImage, EditImageConfig, Image
+import tempfile
 
 app = Flask(__name__)
 
@@ -12,6 +13,15 @@ app = Flask(__name__)
 PROJECT_ID = "tryonixar"
 LOCATION = "us-central1"
 
+_gcp_json = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS_JSON")
+if _gcp_json:
+    _tmp = tempfile.NamedTemporaryFile(
+        mode="w", suffix=".json", delete=False
+    )
+    _tmp.write(_gcp_json)
+    _tmp.close()
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = _tmp.name
+    
 client = genai.Client(
     vertexai=True,
     project=PROJECT_ID,
