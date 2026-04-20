@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TryonixAR</title>
+    <!-- FIX 10: Link styles.css (was missing entirely) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        /* Index-specific styles */
+        .index-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 80px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 50;
+        }
+        .index-nav .nav-logo {
+            font-family: 'Epilogue', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            margin-right: auto;
+        }
+        .index-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            margin: 0;
+            padding: 0;
+        }
+        .index-nav ul li a {
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            color: #1a1c1c;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: opacity 0.2s;
+        }
+        .index-nav ul li a:hover { opacity: 0.4; }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 40px;
+            background: #f9f9f9;
+        }
+        .hero-eyebrow {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-family: 'Epilogue', sans-serif;
+            font-weight: 900;
+            font-size: clamp(48px, 8vw, 96px);
+            line-height: 1;
+            margin: 0 0 24px 0;
+            letter-spacing: -2px;
+        }
+        .hero p {
+            font-size: 17px;
+            color: #555;
+            max-width: 480px;
+            line-height: 1.6;
+            margin: 0 0 40px 0;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .btn-hero-primary {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 14px 32px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+        .btn-hero-primary:hover { opacity: 0.75; }
+        .btn-hero-secondary {
+            background: transparent;
+            color: #000;
+            border: 1.5px solid #000;
+            padding: 14px 32px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-hero-secondary:hover { background: #000; color: #fff; }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #eee;
+            border-top: 1px solid #eee;
+        }
+        .feature-card {
+            background: #fff;
+            padding: 60px 40px;
+        }
+        .feature-number {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: #eee;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        .feature-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+        .feature-card p {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- FIX 10 & 11: Styled nav with real links -->
+    <nav class="index-nav">
+        <div class="nav-logo">TryonixAR</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/wardrobe">Wardrobe</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <p class="hero-eyebrow">AI-Powered Fashion Try-On</p>
+        <h1>WEAR IT<br>BEFORE YOU<br>BUY IT.</h1>
+        <p>Experience the future of shopping with our AI virtual try-on studio. Upload a photo, pick an outfit, see it on you instantly.</p>
+        <div class="hero-actions">
+            <a href="/wardrobe" class="btn-hero-primary">Open AI Studio</a>
+            <a href="#about" class="btn-hero-secondary">Learn More</a>
+        </div>
+    </section>
+
+    <section class="features" id="about">
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <h3>Upload Your Photo</h3>
+            <p>Take a quick snapshot or upload any photo of yourself. Our AI handles the rest.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <h3>Pick Your Outfit</h3>
+            <p>Browse our wardrobe inventory and select any garment you'd like to try on virtually.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <h3>See the Result</h3>
+            <p>Our Vertex AI model generates a photorealistic preview of you wearing the selected item.</p>
+        </div>
+    </section>
+
+    <section id="contact" style="padding: 80px 40px; text-align: center; background: #fff; border-top: 1px solid #eee;">
+        <p class="hero-eyebrow">Get in Touch</p>
+        <h2 style="font-family:'Epilogue',sans-serif; font-weight:900; font-size:36px; margin:0 0 12px 0;">Contact Us</h2>
+        <p style="color:#777; font-size:14px;">Reach out at <a href="mailto:hello@tryonixar.com" style="color:#000; font-weight:700;">hello@tryonixar.com</a></p>
+    </section>
+</body>
+</html>

@@ -1,0 +1,315 @@
+/* =============================================
+   BASE
+   ============================================= */
+body {
+    background-color: #f9f9f9;
+    color: #1a1c1c;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+/* =============================================
+   HEADER / NAV
+   ============================================= */
+.header-nav {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    z-index: 50;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+    gap: 20px;
+}
+
+.logo {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    margin-right: auto;
+}
+
+/* FIX 10/11: Home link in the wardrobe header nav */
+.nav-home-link {
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #999;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+}
+.nav-home-link:hover { color: #1a1c1c; }
+
+/* =============================================
+   LAYOUT
+   ============================================= */
+.main-wrapper {
+    display: flex;
+    padding-top: 80px;
+}
+
+/* =============================================
+   SIDEBAR
+   ============================================= */
+.sidebar {
+    position: fixed;
+    width: 260px;
+    height: calc(100vh - 80px);
+    top: 80px;
+    background: #fff;
+    border-right: 1px solid #eee;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.sidebar-locked {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.clothing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.clothing-item {
+    aspect-ratio: 1;
+    border: 1.5px solid #eee;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    transition: border-color 0.15s;
+}
+
+.clothing-item:hover { border-color: #bbb; }
+.clothing-item.selected { border: 2px solid #000; }
+
+.clothing-item img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+/* =============================================
+   CONTENT AREA
+   ============================================= */
+.content-area {
+    margin-left: 260px;
+    padding: 60px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.wardrobe-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 50px;
+}
+
+/* FIX 12: Added .column-left and .column-right which were used in HTML but missing from CSS */
+.column-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.column-right {
+    display: flex;
+    flex-direction: column;
+}
+
+/* =============================================
+   UPLOAD BOX
+   ============================================= */
+.upload-box {
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 50px 20px;
+    text-align: center;
+    cursor: pointer;
+    background: #fff;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.upload-box:hover {
+    border-color: #aaa;
+    background: #fafafa;
+}
+
+.selection-summary {
+    background: #f2f2f2;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+#selection-list {
+    padding-left: 15px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 8px 0 0 0;
+}
+
+#selection-list li {
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* =============================================
+   OUTPUT CARDS
+   ============================================= */
+.output-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.viewer-container {
+    height: 300px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fafafa;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.placeholder-icon {
+    font-size: 50px;
+    color: #ddd;
+}
+
+.result-img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+model-viewer {
+    width: 100%;
+    height: 100%;
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+.btn-primary {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) { opacity: 0.8; }
+
+.btn-primary:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* =============================================
+   TYPOGRAPHY UTILITIES
+   ============================================= */
+.label-small {
+    font-size: 10px;
+    font-weight: 800;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.main-title {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    margin: 5px 0 15px 0;
+    letter-spacing: -0.5px;
+}
+
+/* =============================================
+   ERROR BANNER (FIX: errors now render in-page)
+   ============================================= */
+.error-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff0f0;
+    border: 1px solid #f5c0c0;
+    color: #b00020;
+    padding: 14px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.error-banner .material-symbols-outlined {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+/* =============================================
+   LOADING OVERLAY (FIX 9: feedback during generation)
+   ============================================= */
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(249, 249, 249, 0.92);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.loading-overlay[hidden] { display: none; }
+
+.loading-inner {
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid #eee;
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 20px auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-title {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    margin: 0 0 8px 0;
+}
+
+.loading-sub {
+    margin: 0;
+}
